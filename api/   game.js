@@ -1,0 +1,23 @@
+module.exports = async (req, res) => {
+  const placeId = "4639625707";
+
+  try {
+    const r = await fetch(
+      `https://games.roblox.com/v1/games?universeIds=${placeId}`
+    );
+
+    const data = await r.json();
+    const game = data?.data?.[0];
+
+    return res.status(200).json({
+      name: game?.name || "unknown",
+      players: game?.playing || 0
+    });
+
+  } catch (e) {
+    return res.status(500).json({
+      error: "roblox error",
+      detail: String(e)
+    });
+  }
+};
