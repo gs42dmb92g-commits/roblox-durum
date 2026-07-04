@@ -25,7 +25,7 @@ module.exports = async (req, res) => {
 
   } catch (e) {
     return res.status(500).json({
-      error: "fetch error",
+      error: "roblox api error",
       detail: String(e)
     });
   }
